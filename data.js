@@ -5,8 +5,12 @@
   Wichtig:
   - Text immer in Anführungszeichen setzen.
   - Mehrere Events mit Komma trennen.
-  - Wenn noch kein Scoreboard-Code existiert, scoreboardCode leer lassen: ""
-  - Wenn du einen direkten Ticketlink hast, ticketUrl ersetzen.
+  - ticketUrl = direkter Ticketlink zum Event.
+  - scoreboardCode = Event-Code aus dem Quizt-Scoreboard.
+
+  Pflege der Punkteübersicht pro Event:
+  - scoreboardCode: "" blendet den Button „Punkteübersicht" an der Event-Kachel aus.
+  - scoreboardCode: "1234" zeigt den Button und öffnet beim Event direkt die Live-Punkte zu diesem Code.
 */
 
 window.QUIZT_DATA = {

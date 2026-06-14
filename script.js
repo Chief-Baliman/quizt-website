@@ -59,7 +59,7 @@
     return `
       <div class="card-actions">
         <a class="btn btn-primary btn-small" href="${escapeHtml(e.ticketUrl || brand.linktreeUrl || '#')}" target="_blank" rel="noopener">Tickets sichern</a>
-        ${board ? `<a class="btn btn-small" href="${escapeHtml(board)}" target="_blank" rel="noopener">Punkte öffnen</a>` : `<a class="btn btn-small" href="${page('punkte.html')}" aria-label="Punkteübersicht öffnen">Punkteübersicht</a>`}
+        ${board ? `<a class="btn btn-small" href="${escapeHtml(board)}" target="_blank" rel="noopener">Punkteübersicht</a>` : ''}
       </div>`;
   }
 
@@ -139,7 +139,7 @@
         <span class="badge">Scoreboard</span>
         <h3 style="margin-top:14px">${escapeHtml(e.title)}</h3>
         ${eventDetails(e)}
-        <a class="btn btn-primary btn-small" href="${escapeHtml(scoreboardUrl(e.scoreboardCode))}" target="_blank" rel="noopener">Punkte öffnen</a>
+        <a class="btn btn-primary btn-small" href="${escapeHtml(scoreboardUrl(e.scoreboardCode))}" target="_blank" rel="noopener">Punkteübersicht</a>
       </article>
     `).join('');
   }
