@@ -370,3 +370,8 @@ body::after { opacity: .35; }
   .laura-layout { grid-template-columns: 1fr; }
   .laura-photo-card img { min-height: auto; max-height: 520px; }
 }
+
+@media (max-width: 760px) {
+  body { padding-bottom: 92px; }
+  main { padding-bottom: 28px; }
+}
