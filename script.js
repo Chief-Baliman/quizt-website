@@ -34,7 +34,7 @@
   function renderHeader() {
     const logo = $('.js-logo');
     if (logo) logo.src = asset('quizt-logo-color.png');
-    $all('[data-link="home"]').forEach(a => a.href = page(''));
+    $all('[data-link="home"]').forEach(a => a.href = page('index.html'));
     $all('[data-link="termine"]').forEach(a => a.href = page('termine.html'));
     $all('[data-link="punkte"]').forEach(a => a.href = page('punkte.html'));
     $all('[data-link="ergebnisse"]').forEach(a => a.href = page('ergebnisse.html'));
