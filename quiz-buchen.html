@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizt buchen</title>
+  <meta name="description" content="Quizt für Bars, Cafés, Brauhäuser, Firmen und private Feiern anfragen.">
+  <link rel="icon" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand-mini" data-link="home" aria-label="Quizt Startseite"><img class="js-logo" src="quizt-logo-color.png" alt="Quizt Logo"></a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a data-link="termine">Termine</a>
+      <a data-link="punkte">Punkte</a>
+      <a data-link="buchen">Quiz buchen</a>
+      <a data-link="laura">Über Laura</a>
+    </nav>
+    <div class="header-actions"><a class="btn btn-primary btn-small" data-link="termine">Tickets</a></div>
+  </div>
+</header>
+<main><section class="page-hero"><div class="container"><p class="kicker">Quizt buchen</p><h1>Bring Quizt in<br><span class="accent">deine Location.</span></h1><p>Für Bars, Kneipen, Cafés, Brauhäuser, Firmenabende und private Feiern. Anfrage senden, Laura meldet sich.</p></div></section><section class="section section-tight"><div class="container grid-2"><div><div class="grid-3 js-offers" style="grid-template-columns:1fr;gap:16px"></div></div><div class="panel panel-gold"><h2>Anfrage senden</h2><p>Das Formular geht an laura.quizt@gmail.com. Beim ersten Test muss die Adresse einmal bestätigt werden.</p><form class="form-grid js-booking-form" action="https://formsubmit.co/laura.quizt@gmail.com" method="POST"><input type="hidden" name="_subject" value="Neue Quizt Buchungsanfrage"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://quizt.fun/danke/"><input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off"><div class="form-field"><label for="name">Name</label><input id="name" name="Name" required></div><div class="form-field"><label for="email">E-Mail</label><input id="email" name="E-Mail" type="email" required></div><div class="form-field"><label for="phone">Telefon optional</label><input id="phone" name="Telefon"></div><div class="form-field"><label for="kind">Anfrage</label><select id="kind" name="Art der Anfrage"><option>Location</option><option>Firmenfeier</option><option>Geburtstag / private Feier</option><option>Sonstiges</option></select></div><div class="form-field full"><label for="location">Location / Stadt</label><input id="location" name="Location oder Stadt" placeholder="z. B. Bar in Köln, Café in Dormagen"></div><div class="form-field full"><label for="message">Worum geht es?</label><textarea id="message" name="Nachricht" required placeholder="Wunschdatum, Gruppengröße, Location-Art, Fragen..."></textarea></div><div class="form-field full"><button class="btn btn-primary" type="submit">Anfrage abschicken</button></div></form></div></div></section></main>
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="quizt-logo-white.png" alt="Quizt Logo weiß">
+      <p>Quizt ist der Quizabend mit Twist für Teams, Locations und alle, die einen guten Abend nicht dem Zufall überlassen wollen.</p>
+    </div>
+    <div class="footer-links">
+      <a data-link="instagram" target="_blank" rel="noopener">Instagram</a>
+      <a data-link="linktree" target="_blank" rel="noopener">Alle Links</a>
+      <a data-email>Kontakt</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bar" aria-label="Mobile Schnellnavigation">
+  <a data-link="termine">Termine</a>
+  <a data-link="punkte">Punkte</a>
+  <a data-link="buchen">Buchen</a>
+</nav>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

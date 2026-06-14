@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizt - Das Quiz mit Twist</title>
+  <meta name="description" content="Quizt ist der Quizabend mit Twist. Termine, Tickets, Live-Punkte und Buchungsanfragen für Bars, Cafés, Brauhäuser und private Events.">
+  <link rel="icon" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand-mini" data-link="home" aria-label="Quizt Startseite"><img class="js-logo" src="quizt-logo-color.png" alt="Quizt Logo"></a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a data-link="termine">Termine</a>
+      <a data-link="punkte">Punkte</a>
+      <a data-link="buchen">Quiz buchen</a>
+      <a data-link="laura">Über Laura</a>
+    </nav>
+    <div class="header-actions"><a class="btn btn-primary btn-small" data-link="termine">Tickets</a></div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="chalk-board">Teamwork<br>Wissen<br>Spaß<br><span class="gold">Twist</span><br>Überraschung<br>Punkte</div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <img class="hero-logo" src="quizt-logo-color.png" alt="Quizt - Das Quiz mit Twist">
+        <p class="kicker">Rätseln. Lachen. Gewinnen.</p>
+        <h1>Der Quizabend<br><span class="accent">mit Extra Spaß.</span></h1>
+        <p>Live moderiert, teamfreundlich und mit digitaler Punkteübersicht. Für alle, die einen Abend wollen, der nicht nach Standardprogramm aussieht.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" data-link="termine">Nächste Termine</a>
+          <a class="btn" data-link="punkte">Punkte öffnen</a>
+          <a class="btn btn-ghost" data-link="buchen">Quizt buchen</a>
+        </div>
+      </div>
+      <aside class="event-featured js-featured-event"></aside>
+    </div>
+  </section>
+
+  <section class="section" id="termine">
+    <div class="container">
+      <p class="kicker">Aktuelle Events</p>
+      <h2>Komm vorbei &<br><span class="cyan">mach mit.</span></h2>
+      <p>Hier findest du die kommenden Quizt-Abende. Tickets laufen je nach Location über rausgegangen.de, Linktree oder direkt vor Ort.</p>
+      <div class="cards js-events"></div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container grid-3">
+      <div class="icon-card"><div class="icon-bubble">👥</div><h3>Teamquiz</h3><p>Gemeinsam raten, lachen, diskutieren und Runde für Runde Punkte sammeln.</p></div>
+      <div class="icon-card"><div class="icon-bubble gold">💡</div><h3>Spannende Fragen</h3><p>Allgemeinwissen, Popkultur, Musik, Bilderrätsel und kleine Überraschungen.</p></div>
+      <div class="icon-card"><div class="icon-bubble">🏆</div><h3>Live-Punkte</h3><p>Das Scoreboard macht den Abend greifbar. Jedes Team sieht, wo es steht.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div class="panel panel-gold">
+        <p class="kicker">Laura moderiert Quizt</p>
+        <h2>Persönlich.<br><span class="accent">Klar. Nahbar.</span></h2>
+        <div class="home-laura-mini"><img src="laura-quizt.jpg" alt="Laura von Quizt"><p>Laura ist das Gesicht von Quizt. Sie führt entspannt, verständlich und mit gutem Gespür durch den Abend. Neue Teams kommen schnell rein, Stammgäste fühlen sich abgeholt und die Location bekommt einen Abend, über den man danach noch spricht.</p></div>
+        <a class="btn btn-primary" data-link="laura">Mehr über Laura</a>
+      </div>
+      <div class="panel">
+        <p class="kicker">Für Locations</p>
+        <h2>Mehr Leben an<br><span class="cyan">ruhigen Abenden.</span></h2>
+        <p>Du hast eine Bar, ein Café, ein Brauhaus oder eine andere Location? Quizt bringt Teams an den Tisch. Wir kümmern uns um Ablauf, Fragen, Moderation und Punkteübersicht.</p>
+        <a class="btn" data-link="buchen">Unverbindlich anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="punkte">
+    <div class="container grid-2">
+      <div>
+        <p class="kicker">Punkteübersicht</p>
+        <h2>Jede Runde<br><span class="accent">zählt.</span></h2>
+        <p>Gib deinen Event-Code ein und öffne das Live-Scoreboard. Vergangene Ergebnisse bleiben später ebenfalls abrufbar.</p>
+      </div>
+      <div class="panel">
+        <form class="score-form js-score-form">
+          <input name="code" inputmode="numeric" autocomplete="off" placeholder="Event-Code" aria-label="Event-Code">
+          <button class="btn btn-primary" type="submit">Punkte öffnen</button>
+        </form>
+        <p style="font-size:14px">Tipp: Am Quizabend findest du den Code auf dem Flyer, am Tisch oder über den QR-Code.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="quizt-logo-white.png" alt="Quizt Logo weiß">
+      <p>Quizt ist der Quizabend mit Twist für Teams, Locations und alle, die einen guten Abend nicht dem Zufall überlassen wollen.</p>
+    </div>
+    <div class="footer-links">
+      <a data-link="instagram" target="_blank" rel="noopener">Instagram</a>
+      <a data-link="linktree" target="_blank" rel="noopener">Alle Links</a>
+      <a data-email>Kontakt</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bar" aria-label="Mobile Schnellnavigation">
+  <a data-link="termine">Termine</a>
+  <a data-link="punkte">Punkte</a>
+  <a data-link="buchen">Buchen</a>
+</nav>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

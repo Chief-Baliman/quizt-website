@@ -1,0 +1,187 @@
+(function () {
+  const data = window.QUIZT_DATA || {};
+  const brand = data.brand || {};
+  const events = (data.events || []).slice().sort((a, b) => (a.dateISO || '').localeCompare(b.dateISO || ''));
+  const results = data.results || [];
+  const today = new Date();
+
+  function $(selector, root = document) { return root.querySelector(selector); }
+  function $all(selector, root = document) { return Array.from(root.querySelectorAll(selector)); }
+  function asset(path) {
+    const prefix = document.body.dataset.assetPrefix || '';
+    if (!path) return '';
+    if (/^https?:/.test(path)) return path;
+    return prefix + path;
+  }
+  function page(path) {
+    const prefix = document.body.dataset.pagePrefix || '';
+    return prefix + path;
+  }
+  function scoreboardUrl(code) {
+    if (!code) return '';
+    return `${brand.scoreboardBaseUrl || 'https://chief-baliman.github.io/quizt-scoreboard/'}?code=${encodeURIComponent(code)}`;
+  }
+  function upcomingEvents() {
+    return events.filter(e => e.status !== 'past');
+  }
+  function featuredEvent() {
+    return events.find(e => e.featured) || upcomingEvents()[0] || events[0];
+  }
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
+  }
+
+  function renderHeader() {
+    const logo = $('.js-logo');
+    if (logo) logo.src = asset('quizt-logo-color.png');
+    $all('[data-link="home"]').forEach(a => a.href = page(''));
+    $all('[data-link="termine"]').forEach(a => a.href = page('termine.html'));
+    $all('[data-link="punkte"]').forEach(a => a.href = page('punkte.html'));
+    $all('[data-link="ergebnisse"]').forEach(a => a.href = page('ergebnisse.html'));
+    $all('[data-link="buchen"]').forEach(a => a.href = page('quiz-buchen.html'));
+    $all('[data-link="laura"]').forEach(a => a.href = page('ueber-laura.html'));
+    $all('[data-link="instagram"]').forEach(a => a.href = brand.instagramUrl || '#');
+    $all('[data-link="linktree"]').forEach(a => a.href = brand.linktreeUrl || '#');
+    $all('[data-email]').forEach(a => a.href = `mailto:${brand.email || 'laura.quizt@gmail.com'}`);
+  }
+
+  function eventDetails(e) {
+    return `
+      <div class="meta">
+        <div><span>📍</span><span><strong>${escapeHtml(e.location)}</strong><br>${escapeHtml(e.address)}</span></div>
+        <div><span>📅</span><span><strong>${escapeHtml(e.dateLabel)}</strong><br>${escapeHtml(e.time)}</span></div>
+        <div><span>🎯</span><span>${escapeHtml(e.category)}</span></div>
+      </div>`;
+  }
+
+  function eventButtons(e) {
+    const board = scoreboardUrl(e.scoreboardCode);
+    return `
+      <div class="card-actions">
+        <a class="btn btn-primary btn-small" href="${escapeHtml(e.ticketUrl || brand.linktreeUrl || '#')}" target="_blank" rel="noopener">Tickets sichern</a>
+        ${board ? `<a class="btn btn-small" href="${escapeHtml(board)}" target="_blank" rel="noopener">Punkte öffnen</a>` : `<a class="btn btn-small" href="${page('punkte.html')}" aria-label="Punkteübersicht öffnen">Punkteübersicht</a>`}
+      </div>`;
+  }
+
+  function renderFeatured() {
+    const target = $('.js-featured-event');
+    if (!target) return;
+    const e = featuredEvent();
+    if (!e) {
+      target.innerHTML = '<div class="empty-state">Aktuell sind neue Termine in Planung.</div>';
+      return;
+    }
+    target.innerHTML = `
+      <div class="label">⚡ Nächstes Quizt Event</div>
+      <h2><span class="accent">${escapeHtml(e.category)}</span><br>${escapeHtml(e.location)}</h2>
+      <div class="event-list-mini">
+        <div class="event-line"><span>📍</span><div><strong>${escapeHtml(e.location)}</strong><br>${escapeHtml(e.address)}</div></div>
+        <div class="event-line"><span>📅</span><div><strong>${escapeHtml(e.dateLabel)}</strong><br>${escapeHtml(e.time)}</div></div>
+        <div class="event-line"><span>🏆</span><div><strong>Live-Punkte</strong><br>Am Quizabend über Code oder Direktlink abrufbar.</div></div>
+      </div>
+      ${eventButtons(e)}
+    `;
+  }
+
+  function eventCard(e) {
+    return `
+      <article class="event-card">
+        <div class="event-card-media">
+          <img src="${escapeHtml(asset(e.flyerImage || 'quizt-hero-wide.png'))}" alt="Flyer ${escapeHtml(e.title)}" loading="lazy">
+        </div>
+        <div class="event-card-body">
+          <span class="badge">${escapeHtml(e.category)}</span>
+          <h3 style="margin-top:14px">${escapeHtml(e.title)}</h3>
+          ${eventDetails(e)}
+          ${eventButtons(e)}
+        </div>
+      </article>`;
+  }
+
+  function renderEvents() {
+    const target = $('.js-events');
+    if (!target) return;
+    const list = upcomingEvents();
+    target.innerHTML = list.length ? list.map(eventCard).join('') : '<div class="empty-state">Neue Termine folgen bald.</div>';
+  }
+
+  function renderResults() {
+    const target = $('.js-results');
+    if (!target) return;
+    if (!results.length) {
+      target.innerHTML = '<div class="empty-state">Noch sind keine vergangenen Scoreboards hinterlegt. Nach den ersten Events erscheinen hier die Ergebnisse.</div>';
+      return;
+    }
+    target.innerHTML = results.map(r => {
+      const url = scoreboardUrl(r.scoreboardCode);
+      return `<article class="panel">
+        <span class="badge">Vergangenes Event</span>
+        <h3 style="margin-top:14px">${escapeHtml(r.title)}</h3>
+        <div class="meta">
+          <div><span>📍</span><span>${escapeHtml(r.location || '')}</span></div>
+          <div><span>📅</span><span>${escapeHtml(r.dateLabel || '')}</span></div>
+        </div>
+        ${url ? `<a class="btn btn-primary btn-small" href="${escapeHtml(url)}" target="_blank" rel="noopener">Scoreboard ansehen</a>` : ''}
+      </article>`;
+    }).join('');
+  }
+
+  function renderScoreEvents() {
+    const target = $('.js-score-events');
+    if (!target) return;
+    const withCodes = events.filter(e => e.scoreboardCode);
+    if (!withCodes.length) {
+      target.innerHTML = '<div class="empty-state">Sobald ein Event-Code hinterlegt ist, erscheint hier ein Direktlink zum Scoreboard.</div>';
+      return;
+    }
+    target.innerHTML = withCodes.map(e => `
+      <article class="panel">
+        <span class="badge">Scoreboard</span>
+        <h3 style="margin-top:14px">${escapeHtml(e.title)}</h3>
+        ${eventDetails(e)}
+        <a class="btn btn-primary btn-small" href="${escapeHtml(scoreboardUrl(e.scoreboardCode))}" target="_blank" rel="noopener">Punkte öffnen</a>
+      </article>
+    `).join('');
+  }
+
+  function setupScoreForm() {
+    const form = $('.js-score-form');
+    if (!form) return;
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const input = form.querySelector('input[name="code"]');
+      const code = (input.value || '').trim();
+      if (!code) return;
+      window.open(scoreboardUrl(code), '_blank', 'noopener');
+    });
+  }
+
+  function renderOffers() {
+    const target = $('.js-offers');
+    if (!target) return;
+    target.innerHTML = (data.locationOffers || []).map((offer, index) => `
+      <div class="icon-card">
+        <div class="icon-bubble ${index === 1 ? 'gold' : ''}">${index === 0 ? '🍻' : index === 1 ? '💡' : '🎤'}</div>
+        <h3>${escapeHtml(offer.title)}</h3>
+        <p>${escapeHtml(offer.text)}</p>
+      </div>`).join('');
+  }
+
+  function setupFormReturn() {
+    const form = $('.js-booking-form');
+    if (!form) return;
+    const next = form.querySelector('input[name="_next"]');
+    if (next && location.hostname !== 'localhost') {
+      next.value = `${location.origin}${page('danke.html')}`;
+    }
+  }
+
+  renderHeader();
+  renderFeatured();
+  renderEvents();
+  renderResults();
+  renderScoreEvents();
+  renderOffers();
+  setupScoreForm();
+  setupFormReturn();
+})();
