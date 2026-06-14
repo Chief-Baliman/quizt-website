@@ -1,14 +1,3 @@
-# Quizt Website - einfacher Upload
+Quizt Website V6 Formular-Fix
 
-Diese Version enthält keine Unterordner. Du kannst alle Dateien direkt in GitHub hochladen.
-
-Wichtig: Neue Events pflegst du in `data.js`.
-
-Seiten:
-- index.html
-- termine.html
-- punkte.html
-- ergebnisse.html
-- quiz-buchen.html
-- ueber-laura.html
-- danke.html
+Alles liegt in einem Ordner. Lade alle Dateien direkt in dein GitHub-Repository hoch. Diese Version korrigiert die Danke-Seite nach Formularversand.

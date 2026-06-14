@@ -172,7 +172,7 @@
     if (!form) return;
     const next = form.querySelector('input[name="_next"]');
     if (next && location.hostname !== 'localhost') {
-      next.value = `${location.origin}${page('danke.html')}`;
+      next.value = new URL(page('danke.html'), window.location.href).href;
     }
   }
 
