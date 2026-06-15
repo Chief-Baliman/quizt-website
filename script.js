@@ -3,7 +3,20 @@
   const brand = data.brand || {};
   const events = (data.events || []).slice().sort((a, b) => (a.dateISO || '').localeCompare(b.dateISO || ''));
   const results = data.results || [];
-  const today = new Date();
+
+  function localDateOnly(date = new Date()) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+  function parseLocalDate(dateISO) {
+    const parts = String(dateISO || '').split('-').map(Number);
+    if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
+  function isPastEvent(event) {
+    const eventDate = parseLocalDate(event.dateISO);
+    if (!eventDate) return false;
+    return eventDate < localDateOnly();
+  }
 
   function $(selector, root = document) { return root.querySelector(selector); }
   function $all(selector, root = document) { return Array.from(root.querySelectorAll(selector)); }
@@ -22,10 +35,13 @@
     return `${brand.scoreboardBaseUrl || 'https://chief-baliman.github.io/quizt-scoreboard/'}?code=${encodeURIComponent(code)}`;
   }
   function upcomingEvents() {
-    return events.filter(e => e.status !== 'past');
+    return events.filter(e => !isPastEvent(e));
+  }
+  function pastEvents() {
+    return events.filter(e => isPastEvent(e)).sort((a, b) => (b.dateISO || '').localeCompare(a.dateISO || ''));
   }
   function featuredEvent() {
-    return events.find(e => e.featured) || upcomingEvents()[0] || events[0];
+    return upcomingEvents()[0] || null;
   }
   function escapeHtml(value) {
     return String(value || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
@@ -40,6 +56,8 @@
     $all('[data-link="ergebnisse"]').forEach(a => a.href = page('ergebnisse.html'));
     $all('[data-link="buchen"]').forEach(a => a.href = page('quiz-buchen.html'));
     $all('[data-link="laura"]').forEach(a => a.href = page('ueber-laura.html'));
+    $all('[data-link="impressum"]').forEach(a => a.href = page('impressum.html'));
+    $all('[data-link="datenschutz"]').forEach(a => a.href = page('datenschutz.html'));
     $all('[data-link="instagram"]').forEach(a => a.href = brand.instagramUrl || '#');
     $all('[data-link="linktree"]').forEach(a => a.href = brand.linktreeUrl || '#');
     $all('[data-email]').forEach(a => a.href = `mailto:${brand.email || 'laura.quizt@gmail.com'}`);
@@ -56,11 +74,10 @@
 
   function eventButtons(e) {
     const board = scoreboardUrl(e.scoreboardCode);
-    return `
-      <div class="card-actions">
-        <a class="btn btn-primary btn-small" href="${escapeHtml(e.ticketUrl || brand.linktreeUrl || '#')}" target="_blank" rel="noopener">Tickets sichern</a>
-        ${board ? `<a class="btn btn-small" href="${escapeHtml(board)}" target="_blank" rel="noopener">Punkteübersicht</a>` : ''}
-      </div>`;
+    const ticket = !isPastEvent(e) && e.ticketUrl ? `<a class="btn btn-primary btn-small" href="${escapeHtml(e.ticketUrl || brand.linktreeUrl || '#')}" target="_blank" rel="noopener">Tickets sichern</a>` : '';
+    const points = board ? `<a class="btn btn-small" href="${escapeHtml(board)}" target="_blank" rel="noopener">Punkteübersicht</a>` : '';
+    if (!ticket && !points) return '';
+    return `<div class="card-actions">${ticket}${points}</div>`;
   }
 
   function renderFeatured() {
@@ -84,13 +101,14 @@
   }
 
   function eventCard(e) {
+    const past = isPastEvent(e);
     return `
-      <article class="event-card">
+      <article class="event-card ${past ? 'is-past' : ''}">
         <div class="event-card-media">
           <img src="${escapeHtml(asset(e.flyerImage || 'quizt-hero-wide.png'))}" alt="Flyer ${escapeHtml(e.title)}" loading="lazy">
         </div>
         <div class="event-card-body">
-          <span class="badge">${escapeHtml(e.category)}</span>
+          <span class="badge ${past ? 'badge-muted' : ''}">${past ? 'Vergangen' : escapeHtml(e.category)}</span>
           <h3 style="margin-top:14px">${escapeHtml(e.title)}</h3>
           ${eventDetails(e)}
           ${eventButtons(e)}
@@ -103,6 +121,13 @@
     if (!target) return;
     const list = upcomingEvents();
     target.innerHTML = list.length ? list.map(eventCard).join('') : '<div class="empty-state">Neue Termine folgen bald.</div>';
+  }
+
+  function renderPastEvents() {
+    const target = $('.js-past-events');
+    if (!target) return;
+    const list = pastEvents();
+    target.innerHTML = list.length ? list.map(eventCard).join('') : '<div class="empty-state">Vergangene Termine erscheinen hier automatisch am Tag nach dem Event.</div>';
   }
 
   function renderResults() {
@@ -179,6 +204,7 @@
   renderHeader();
   renderFeatured();
   renderEvents();
+  renderPastEvents();
   renderResults();
   renderScoreEvents();
   renderOffers();

@@ -7,6 +7,11 @@
   - Mehrere Events mit Komma trennen.
   - ticketUrl = direkter Ticketlink zum Event.
   - scoreboardCode = Event-Code aus dem Quizt-Scoreboard.
+  - dateISO steuert automatisch, ob ein Event unter „Kommende Termine" oder „Vergangene Termine" angezeigt wird.
+
+  Automatik:
+  - Das nächste anstehende Event wird automatisch oben auf der Startseite angezeigt.
+  - Am Tag nach dem Event wandert es automatisch in „Vergangene Termine".
 
   Pflege der Punkteübersicht pro Event:
   - scoreboardCode: "" blendet den Button „Punkteübersicht" an der Event-Kachel aus.
