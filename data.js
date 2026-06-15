@@ -62,6 +62,22 @@ window.QUIZT_DATA = {
       flyerImage: "flyer-gabriels-pinte.png",
       status: "upcoming",
       featured: false
+    },
+    {
+      id: "streetlife-2026-08-05",
+      title: "Quizt im Streetlife",
+      category: "Allgemeinwissen",
+      location: "Streetlife",
+      address: "Kölner Str. 45, 41539 Dormagen",
+      dateLabel: "Mi. 05.08.2026",
+      dateISO: "2026-08-05",
+      time: "19:30 Uhr",
+      city: "Dormagen",
+      ticketUrl: "https://rausgegangen.de/events/quizt-streetlife-das-quiz-mit-twist-1/",
+      scoreboardCode: "",
+      flyerImage: "flyer-streetlife-2026-08-05.png",
+      status: "upcoming",
+      featured: false
     }
   ],
 

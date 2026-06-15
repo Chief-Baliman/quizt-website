@@ -30,3 +30,9 @@ zeigt den Button und öffnet direkt das Scoreboard.
 
 ## Rechtliches
 Bitte Impressum und Datenschutz vor Veröffentlichung prüfen. Falls Laura rechtlich Betreiberin sein soll, müssen die Angaben entsprechend angepasst werden.
+
+
+V15 Hinweise:
+- Impressum und Datenschutzerklärung sind als Dateien weiter enthalten, aber im Footer vorerst ausgeblendet.
+- Neues Event Streetlife 05.08.2026 wurde in data.js ergänzt.
+- Für das neue Event ist vorerst quizt-questions-wide.png als neutrales Bild hinterlegt, bis der finale Flyer als Datei ergänzt wird.
