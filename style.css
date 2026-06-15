@@ -96,6 +96,15 @@ img { max-width: 100%; display: block; }
 .btn-ghost { border-color: rgba(255, 189, 34, .55); box-shadow: none; }
 .btn-small { min-height: 38px; padding: 9px 13px; font-size: 12px; }
 
+.section-more {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+.section-more .btn {
+  min-width: min(100%, 320px);
+}
+
 .container { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 .section { padding: 74px 0; position: relative; }
 .section-tight { padding: 48px 0; }
