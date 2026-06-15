@@ -119,7 +119,9 @@
   function renderEvents() {
     const target = $('.js-events');
     if (!target) return;
-    const list = upcomingEvents();
+    const limit = Number(target.dataset.limit || 0);
+    const allUpcoming = upcomingEvents();
+    const list = limit > 0 ? allUpcoming.slice(0, limit) : allUpcoming;
     target.innerHTML = list.length ? list.map(eventCard).join('') : '<div class="empty-state">Neue Termine folgen bald.</div>';
   }
 
