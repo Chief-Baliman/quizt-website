@@ -58,7 +58,7 @@ window.QUIZT_DATA = {
       time: "19:30 Uhr",
       city: "Köln",
       ticketUrl: "https://rausgegangen.de/events/quizt-gabriels-pinte-das-quiz-mit-twist-0/",
-      scoreboardCode: "",
+      scoreboardCode: "9749",
       flyerImage: "flyer-gabriels-pinte.png",
       status: "upcoming",
       featured: false
