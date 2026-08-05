@@ -74,7 +74,7 @@ window.QUIZT_DATA = {
       time: "19:30 Uhr",
       city: "Dormagen",
       ticketUrl: "https://rausgegangen.de/events/quizt-streetlife-das-quiz-mit-twist-1/",
-      scoreboardCode: "",
+      scoreboardCode: "6591",
       flyerImage: "flyer-streetlife-2026-08-05.png",
       status: "upcoming",
       featured: false
