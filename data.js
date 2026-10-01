@@ -80,22 +80,6 @@ window.QUIZT_DATA = {
       featured: false
     },
     {
-      id: "streetlife-2026-10-07",
-      title: "Quizt im Streetlife",
-      category: "Allgemeinwissen",
-      location: "Streetlife",
-      address: "Kölner Str. 45, 41539 Dormagen",
-      dateLabel: "Mi. 07.10.2026",
-      dateISO: "2026-10-07",
-      time: "19:00 Uhr",
-      city: "Dormagen",
-      ticketUrl: "https://rausgegangen.de/events/quizt-streetlife-das-quiz-mit-twist-2/",
-      scoreboardCode: "",
-      flyerImage: "flyer-streetlife-2026-10-07.png",
-      status: "upcoming",
-      featured: false
-    },
-    {
       id: "gabriels-pinte-2026-10-16",
       title: "Quizt in Gabriels Pinte",
       category: "Allgemeinwissen",
