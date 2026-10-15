@@ -36,3 +36,6 @@ V15 Hinweise:
 - Impressum und Datenschutzerklärung sind als Dateien weiter enthalten, aber im Footer vorerst ausgeblendet.
 - Neues Event Streetlife 05.08.2026 wurde in data.js ergänzt.
 - Für das neue Event ist vorerst quizt-questions-wide.png als neutrales Bild hinterlegt, bis der finale Flyer als Datei ergänzt wird.
+
+
+V21: Event Gabriels Pinte am 22.01.2027 ergänzt. Flyer: flyer-gabriels-pinte-2027-01-22.png. Buchungslink und Eintrag stehen in data.js. Alle Dateien aus diesem Ordner ins Repository quizt-website hochladen, nicht in quizt-scoreboard.

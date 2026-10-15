@@ -42,7 +42,7 @@ window.QUIZT_DATA = {
       time: "19:30 Uhr",
       city: "Dormagen",
       ticketUrl: "https://rausgegangen.de/events/quizt-streetlife-das-quiz-mit-twist-0/",
-      scoreboardCode: "7505",
+      scoreboardCode: "",
       flyerImage: "flyer-streetlife.png",
       status: "upcoming",
       featured: true
@@ -58,7 +58,7 @@ window.QUIZT_DATA = {
       time: "19:30 Uhr",
       city: "Köln",
       ticketUrl: "https://rausgegangen.de/events/quizt-gabriels-pinte-das-quiz-mit-twist-0/",
-      scoreboardCode: "9749",
+      scoreboardCode: "",
       flyerImage: "flyer-gabriels-pinte.png",
       status: "upcoming",
       featured: false
@@ -74,8 +74,24 @@ window.QUIZT_DATA = {
       time: "19:30 Uhr",
       city: "Dormagen",
       ticketUrl: "https://rausgegangen.de/events/quizt-streetlife-das-quiz-mit-twist-1/",
-      scoreboardCode: "6591",
+      scoreboardCode: "",
       flyerImage: "flyer-streetlife-2026-08-05.png",
+      status: "upcoming",
+      featured: false
+    },
+    {
+      id: "streetlife-2026-10-07",
+      title: "Quizt im Streetlife",
+      category: "Allgemeinwissen",
+      location: "Streetlife",
+      address: "Kölner Str. 45, 41539 Dormagen",
+      dateLabel: "Mi. 07.10.2026",
+      dateISO: "2026-10-07",
+      time: "19:00 Uhr",
+      city: "Dormagen",
+      ticketUrl: "https://rausgegangen.de/events/quizt-streetlife-das-quiz-mit-twist-2/",
+      scoreboardCode: "",
+      flyerImage: "flyer-streetlife-2026-10-07.png",
       status: "upcoming",
       featured: false
     },
@@ -92,6 +108,22 @@ window.QUIZT_DATA = {
       ticketUrl: "https://rausgegangen.de/events/quizt-gabriels-pinte-das-quiz-mit-twist-1/",
       scoreboardCode: "",
       flyerImage: "flyer-gabriels-pinte-2026-10-16.png",
+      status: "upcoming",
+      featured: false
+    },
+    {
+      id: "gabriels-pinte-2027-01-22",
+      title: "Quizt in Gabriels Pinte",
+      category: "Allgemeinwissen",
+      location: "Gabriels Pinte",
+      address: "Neusser Landstr. 381, 50769 Köln",
+      dateLabel: "Fr. 22.01.2027",
+      dateISO: "2027-01-22",
+      time: "19:30 Uhr",
+      city: "Köln",
+      ticketUrl: "https://rausgegangen.de/events/quizt-gabriels-pinte-das-quiz-mit-twist-2/",
+      scoreboardCode: "",
+      flyerImage: "flyer-gabriels-pinte-2027-01-22.png",
       status: "upcoming",
       featured: false
     }
